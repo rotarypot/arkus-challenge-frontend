@@ -8,18 +8,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { UserService } from './services/user-service/user.service';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

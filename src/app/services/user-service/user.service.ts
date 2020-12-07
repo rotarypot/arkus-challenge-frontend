@@ -10,5 +10,8 @@ export class UserService {
   getUsers() {
     return this.http.get('http://localhost:3000/users');
   }
+  getUserById(_id) {
+    return this.http.get('http://localhost:3000/users/' + _id)
+  }
 
 }

@@ -1,1 +1,51 @@
-<p>user-edit works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2>Training Time Capture</h2>
+            <h3 style="display: inline-block; margin-right: 6px"><span class="badge bg-secondary"
+                    *ngIf="user_data | async as user_data">{{user_data.username | titlecase}}</span>
+            </h3>
+            <span><a [routerLink]="['/']">
+                    << Back to users list</a></span>
+        </div>
+    </div>
+</div>
+<form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Select a course</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Select a course</option>
+                        <option *ngFor="let course of courses" [value]="course._id">{{course.courseName}}</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect02">Select training type</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect02">
+                        <option selected>Select a course type</option>
+                        <option *ngFor="let trainingtype of trainingtypes" [value]="trainingtype._id">
+                            {{trainingtype.trainingTypeName}}</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect03">Time spent in training</label>
+                    </div>
+                    <input type="number" class="form-control" placeholder="In hours">
+                </div>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary">Save this data</button>
+            </div>
+        </div>
+    </div>
+
+</form>

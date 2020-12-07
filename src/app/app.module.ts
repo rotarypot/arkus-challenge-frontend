@@ -10,6 +10,7 @@ import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { UserService } from './services/user-service/user.service';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CommonModule } from '@angular/common';
+import { CoursesService } from './services/courses.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     CommonModule
   ],
-  providers: [UserService],
+  providers: [UserService, CoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

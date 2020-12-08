@@ -15,7 +15,7 @@ export class UserService {
   }
 
   updateTraining(data) {
-    return this.http.post('http://localhost:3000/users/update', data);
+    return this.http.post('http://localhost:3000/users/update', data)
 
   }
 

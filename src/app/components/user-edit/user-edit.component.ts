@@ -55,15 +55,14 @@ export class UserEditComponent implements OnInit {
 
   submitTime() {
 
+    const data = this.timeForm.value;
+    data.user_id = this.user_id;
+    this._userService.updateTraining(data).subscribe(res => {
+      alert('update succesful!')
 
-
-    // const data = this.timeForm.value;
-    // data.user_id = this.user_id;
-    // this._userService.updateTraining(data).subscribe(res => {
-
-
-
-
-    // })
+    },
+      error => {
+        alert('update failed')
+      })
   }
 }

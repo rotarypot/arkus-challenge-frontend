@@ -17,9 +17,10 @@ export class UserEditComponent implements OnInit {
   public trainingtypes: object;
 
   newTrainingform = new FormGroup({
+    user_id: new FormControl(),
     course_id: new FormControl(),
     trainingtype_id: new FormControl(),
-    timespent: new FormControl('', [Validators.pattern('^(0*[1-9][0-9]*(\\.[0-9]*)?|0*\\.[0-9]*[1-9][0-9]*)$')]) // digits only
+    timespent: new FormControl()
 
   })
 
@@ -53,7 +54,11 @@ export class UserEditComponent implements OnInit {
 
   submitTime() {
 
-    console.log(this.newTrainingform.value)
+    const data = this.newTrainingform.value;
+    data.user_id = this.user_id;
+    this._userService.updateTraining(data).subscribe(res => {
+      console.log(res);
+    })
 
   }
 

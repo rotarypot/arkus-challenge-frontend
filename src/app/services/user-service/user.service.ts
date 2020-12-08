@@ -14,4 +14,9 @@ export class UserService {
     return this.http.get('http://localhost:3000/users/' + _id)
   }
 
+  updateTraining(data) {
+    return this.http.post('http://localhost:3000/users/update', data);
+
+  }
+
 }

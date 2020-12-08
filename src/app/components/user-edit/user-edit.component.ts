@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from 'src/app/services/courses.service';
 import { UserService } from 'src/app/services/user-service/user.service';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var $: any;
 
 @Component({
@@ -15,6 +15,14 @@ export class UserEditComponent implements OnInit {
   public user_data: object;
   public courses: object;
   public trainingtypes: object;
+
+  newTrainingform = new FormGroup({
+    course_id: new FormControl(),
+    trainingtype_id: new FormControl(),
+    timespent: new FormControl('', [Validators.pattern('^(0*[1-9][0-9]*(\\.[0-9]*)?|0*\\.[0-9]*[1-9][0-9]*)$')]) // digits only
+
+  })
+
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -42,4 +50,11 @@ export class UserEditComponent implements OnInit {
 
 
   }
+
+  submitTime() {
+
+    console.log(this.newTrainingform.value)
+
+  }
+
 }

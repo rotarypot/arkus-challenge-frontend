@@ -11,6 +11,7 @@ import { UserService } from './services/user-service/user.service';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from './services/courses.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CoursesService } from './services/courses.service';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, CoursesService],
   bootstrap: [AppComponent]

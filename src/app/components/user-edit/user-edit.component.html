@@ -10,7 +10,7 @@
         </div>
     </div>
 </div>
-<form>
+<form [formGroup]="newTrainingform">
     <div class="container">
         <div class="row">
             <div class="col-sm">
@@ -18,7 +18,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Select a course</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select class="custom-select" id="inputGroupSelect01" formControlName="course_id">
                         <option selected>Select a course</option>
                         <option *ngFor="let course of courses" [value]="course._id">{{course.courseName}}</option>
                     </select>
@@ -28,7 +28,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect02">Select training type</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect02">
+                    <select class="custom-select" id="inputGroupSelect02" formControlName="trainingtype_id">
                         <option selected>Select a course type</option>
                         <option *ngFor="let trainingtype of trainingtypes" [value]="trainingtype._id">
                             {{trainingtype.trainingTypeName}}</option>
@@ -39,13 +39,14 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect03">Time spent in training</label>
                     </div>
-                    <input type="number" class="form-control" placeholder="In hours">
+                    <input type="number" class="form-control" placeholder="In hours" formControlName="timespent"
+                        name="timespent">
                 </div>
             </div>
             <div class="col-sm">
-                <button class="btn btn-primary">Save this data</button>
+                <button type="button" class="btn btn-primary" (click)="submitTime()">Save this
+                    data</button>
             </div>
         </div>
     </div>
-
 </form>

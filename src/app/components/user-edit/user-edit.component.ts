@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from 'src/app/services/courses.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 declare var $: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class UserEditComponent implements OnInit {
   public courses: object;
   public trainingtypes: object;
 
-  newTrainingform = new FormGroup({
+  timeForm = new FormGroup({
     user_id: new FormControl(),
     course_id: new FormControl(),
     trainingtype_id: new FormControl(),
@@ -28,7 +29,7 @@ export class UserEditComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _coursesService: CoursesService,
-    private _userService: UserService
+    private _userService: UserService,
   ) {
 
   }
@@ -54,12 +55,15 @@ export class UserEditComponent implements OnInit {
 
   submitTime() {
 
-    const data = this.newTrainingform.value;
-    data.user_id = this.user_id;
-    this._userService.updateTraining(data).subscribe(res => {
-      console.log(res);
-    })
 
+
+    // const data = this.timeForm.value;
+    // data.user_id = this.user_id;
+    // this._userService.updateTraining(data).subscribe(res => {
+
+
+
+
+    // })
   }
-
 }

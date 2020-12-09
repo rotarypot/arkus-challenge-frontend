@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from 'src/app/services/courses.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertService } from '../../_alert/alert.service'
 
 declare var $: any;
 
@@ -25,11 +26,16 @@ export class UserEditComponent implements OnInit {
 
   })
 
+  options = {
+    autoClose: true
+  }
+
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _coursesService: CoursesService,
     private _userService: UserService,
+    public alertService: AlertService
   ) {
 
   }
@@ -58,11 +64,14 @@ export class UserEditComponent implements OnInit {
     const data = this.timeForm.value;
     data.user_id = this.user_id;
     this._userService.updateTraining(data).subscribe(res => {
-      alert('update succesful!')
+      this.alertService.success('Training update successful!', this.options);
+      this.timeForm.reset();
 
     },
       error => {
-        alert('update failed')
+        this.alertService.error('Update failed', this.options);
+        this.timeForm.reset();
+
       })
   }
 }

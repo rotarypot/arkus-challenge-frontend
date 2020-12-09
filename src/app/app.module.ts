@@ -12,6 +12,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from './services/courses.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from './_alert';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     HttpClientModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule
   ],
   providers: [UserService, CoursesService],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-lg">
     <div class="row">
         <div class="col-sm">
             <h1>Users List</h1>
@@ -7,22 +7,20 @@
                 <thead>
                     <tr>
                         <th scope="col">User Name</th>
-                        <th scope="col">Videos</th>
-                        <th scope="col">Talleres</th>
-                        <th scope="col">Lecturas</th>
-                        <th scope="col">Ejercicios Prácticos</th>
+                        <th scope="col">Training</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of users; index as i">
+                    <tr *ngFor="let user of publicdata">
                         <td>
                             <a [routerLink]="['/user-edit', user._id]"> {{ user.username  }}</a>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <span [className]="'badge rounded-pill ' + t.training_type.trainingTypeName"
+                                *ngFor="let t of user.TrainingTimes">
+                                {{t.course.courseName}} - {{t.timespent}}h
+                            </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

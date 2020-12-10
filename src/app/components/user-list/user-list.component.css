@@ -1,0 +1,25 @@
+.badge {
+    padding: 10px;
+    margin-right: 5px;
+    margin-bottom: 4px
+}
+
+.Video {
+    background-color: green;
+    color: white
+}
+
+.Lectures {
+    background-color: aqua;
+    color: black;
+}
+
+.Workshop {
+    background-color: cadetblue;
+    color: black
+}
+
+.Exercises {
+    background-color: darkgoldenrod;
+
+}

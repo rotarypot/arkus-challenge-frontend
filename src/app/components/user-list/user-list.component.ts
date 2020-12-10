@@ -12,16 +12,17 @@ export class UserListComponent implements OnInit {
     private UserService: UserService
   ) { }
 
-  users;
+  public publicdata;
 
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers() {
-    this.UserService.getUsers().subscribe(
+    this.UserService.getPublicData().subscribe(
       data => {
-        this.users = data;
+        this.publicdata = data;
+        console.log(this.publicdata)
       }
     )
   }

@@ -17,7 +17,9 @@ export class UserService {
 
   updateTraining(data) {
     return this.http.post(environment.API_URL + 'users/update', data)
-
+  }
+  getPublicData() {
+    return this.http.get(environment.API_URL + 'publicdata');
   }
 
 }

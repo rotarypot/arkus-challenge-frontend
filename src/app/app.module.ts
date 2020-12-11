@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { CoursesService } from './services/courses.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from './_alert';
+import { ModalModule } from './_modal';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AlertModule } from './_alert';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    AlertModule
+    AlertModule,
+    ModalModule
   ],
   providers: [UserService, CoursesService],
   bootstrap: [AppComponent]

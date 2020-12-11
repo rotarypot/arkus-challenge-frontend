@@ -1,8 +1,22 @@
 <div class="container-lg">
     <div class="row">
         <div class="col-sm">
-            <h1>Users List</h1>
+            <h4>Users List</h4>
+        </div>
+        <div class="col-sm text-right">
+            <span *ngIf="!showLogin" class="badge bg-success">
+                <a href="#" (click)="logoutUser()" class="logoutLink">Logout</a>
+            </span>
+            <span *ngIf="showLogin" class="badge bg-light">
+                <a href="#" (click)="loginLink()" class="loginLink">Login</a>
+            </span>
+        </div>
+    </div>
+</div>
 
+<div class="container-lg">
+    <div class="row">
+        <div class="col-sm">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -17,7 +31,7 @@
                             <a [routerLink]="['/user-edit', user._id]" (click)="saveId(user._id)">
                                 {{ user.username  }}</a>
                         <td>
-                            <span [className]="'badge rounded-pill ' + t.training_type.trainingTypeName"
+                            <span [className]="'badge rounded-pill myBadge ' + t.training_type.trainingTypeName"
                                 *ngFor="let t of user.TrainingTimes">
                                 {{t.course.courseName}} - {{t.timespent}}h
                             </span>
@@ -50,7 +64,13 @@
         <span class="invalid" *ngIf="loginForm.controls['password'].errors">
             Password cannot be blank.
         </span>
-        <button type="button" class="btn btn-primary" [disabled]="!loginForm.valid" (click)="loginUser()">Login</button>
+        <button type="button" class="btn btn-info loginbutton" [disabled]="!loginForm.valid || badCredentials"
+            (click)="loginUser()">
+            Login
+
+            <span class="badge bg-warning" [hidden]="!badCredentials">BAD LOGIN</span>
+        </button>
+
 
     </form>
 </jw-modal>

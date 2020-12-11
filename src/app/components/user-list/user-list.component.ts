@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalService } from 'src/app/_modal';
+
 
 @Component({
   selector: 'app-user-list',
@@ -13,12 +15,14 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private UserService: UserService,
-    private router: Router
+    private router: Router,
+    private modal: ModalService
   ) { }
 
   public publicdata;
   public badCredentials: boolean = false;
   private userId;
+  public showLogin: boolean = false;
 
   public loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
@@ -28,10 +32,28 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers();
+    this.onChanges();
+
+    const gotToken = localStorage.getItem('arkus-token');
+    if (!gotToken) {
+      this.showLogin = true
+    }
+
   }
 
   saveId(id) {
     this.userId = id;
+  }
+
+  logoutUser() {
+    localStorage.removeItem('arkus-token');
+    this.showLogin = true;
+  }
+
+  loginLink() {
+
+    this.modal.open('modal-1')
+
   }
 
   loginUser() {
@@ -40,8 +62,12 @@ export class UserListComponent implements OnInit {
       // save token to localstorage
       localStorage.setItem('arkus-token', res.headers.get('auth-token'));
       this.badCredentials = false;
-      this.router.navigate(['user-edit', this.userId])
-
+      if (this.userId) {
+        this.router.navigate(['user-edit', this.userId])
+        this.userId = null;
+      }
+      this.modal.close('modal-1');
+      this.showLogin = false;
     },
       err => {
         this.badCredentials = true;
@@ -49,6 +75,13 @@ export class UserListComponent implements OnInit {
 
   }
 
+  onChanges(): void {
+    this.loginForm.valueChanges.subscribe(val => {
+      this.badCredentials = false;
+
+
+    });
+  }
   getUsers() {
     this.UserService.getPublicData().subscribe(
       data => {

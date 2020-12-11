@@ -3,7 +3,7 @@
     color: white
 }
 
-.Lectures {
+.Lecture {
     background-color: aqua;
     color: black;
 }
@@ -13,7 +13,7 @@
     color: black
 }
 
-.Exercises {
+.Exercise {
     background-color: darkgoldenrod;
 
 }
@@ -27,8 +27,6 @@
 
 .logoutLink {
     color: white;
-    padding: 10px;
-
 }
 
 .loginbutton {
@@ -39,4 +37,9 @@
 .myBadge {
     padding: 10px;
     margin: 0 6px 6px 0
+}
+
+.ll {
+    margin: 8px 0 0 0;
+    padding: 7px;
 }

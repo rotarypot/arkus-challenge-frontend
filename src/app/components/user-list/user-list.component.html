@@ -14,7 +14,8 @@
                 <tbody>
                     <tr *ngFor="let user of publicdata">
                         <td>
-                            <a [routerLink]="['/user-edit', user._id]"> {{ user.username  }}</a>
+                            <a [routerLink]="['/user-edit', user._id]" (click)="saveId(user._id)">
+                                {{ user.username  }}</a>
                         <td>
                             <span [className]="'badge rounded-pill ' + t.training_type.trainingTypeName"
                                 *ngFor="let t of user.TrainingTimes">
@@ -27,3 +28,29 @@
         </div>
     </div>
 </div>
+
+<jw-modal id="modal-1">
+    <h3>Login</h3>
+    <form [formGroup]="loginForm">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text">Email</label>
+            </div>
+            <input type="text" class="form-control" formControlName="email" name="email">
+        </div>
+        <span class="invalid" *ngIf="loginForm.controls['email'].errors">
+            Name is required.
+        </span>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text">Password</label>
+            </div>
+            <input type="password" class="form-control" formControlName="password" name="password">
+        </div>
+        <span class="invalid" *ngIf="loginForm.controls['password'].errors">
+            Password cannot be blank.
+        </span>
+        <button type="button" class="btn btn-primary" [disabled]="!loginForm.valid" (click)="loginUser()">Login</button>
+
+    </form>
+</jw-modal>

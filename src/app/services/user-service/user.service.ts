@@ -8,6 +8,10 @@ export class UserService {
     private http: HttpClient
   ) { }
 
+  loginUser(credentials) {
+    return this.http.post(environment.API_URL + 'users/login', credentials, { observe: 'response' });
+  }
+
   getUsers() {
     return this.http.get(environment.API_URL + 'users');
   }

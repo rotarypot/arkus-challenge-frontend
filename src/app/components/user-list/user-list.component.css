@@ -23,3 +23,10 @@
     background-color: darkgoldenrod;
 
 }
+
+.invalid {
+    display: block;
+    color: red;
+    margin: -17px 0 10px 0;
+    padding: 0;
+}

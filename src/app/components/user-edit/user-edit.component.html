@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <h2>Training Time Capture</h2>
+            <h4>Training Time Capture</h4>
             <hr>
             <h3 style="display: inline-block; margin-right: 6px"><span class="badge bg-secondary"
                     *ngIf="user_data | async as user_data">{{user_data.username | titlecase}}</span>
@@ -45,10 +45,8 @@
                 </div>
             </div>
             <div class="col-sm">
-                <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">Save
-                    this
-                    data</button>
-
+                <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">
+                    Save this data</button>
                 <alert></alert>
             </div>
         </div>

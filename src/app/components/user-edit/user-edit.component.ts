@@ -20,9 +20,9 @@ export class UserEditComponent implements OnInit {
 
   timeForm = new FormGroup({
     user_id: new FormControl(),
-    course_id: new FormControl(),
-    trainingtype_id: new FormControl(),
-    timespent: new FormControl()
+    course_id: new FormControl('', Validators.required),
+    trainingtype_id: new FormControl('', Validators.required),
+    timespent: new FormControl('', Validators.required)
 
   })
 
@@ -61,17 +61,25 @@ export class UserEditComponent implements OnInit {
 
   submitTime() {
 
-    const data = this.timeForm.value;
-    data.user_id = this.user_id;
-    this._userService.updateTraining(data).subscribe(res => {
-      this.alertService.success('Training update successful!', this.options);
-      this.timeForm.reset();
-
-    },
-      error => {
-        this.alertService.error('Update failed', this.options);
+    if (this.timeForm.status == 'VALID') {
+      const data = this.timeForm.value;
+      data.user_id = this.user_id;
+      this._userService.updateTraining(data).subscribe(res => {
+        this.alertService.success('Training update successful!', this.options);
         this.timeForm.reset();
 
-      })
+      },
+        error => {
+          this.alertService.error('Update failed', this.options);
+          this.timeForm.reset();
+
+        })
+
+    } else {
+      this.alertService.error('All fields are REQUIRED', this.options)
+
+    }
+
+
   }
 }

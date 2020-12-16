@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing"
 import { ReactiveFormsModule } from "@angular/forms"
 import { RouterTestingModule } from "@angular/router/testing"
 import { Observable, of } from "rxjs"
-import { CoursesService } from "src/app/services/courses.service"
-import { UserService } from "src/app/services/user-service/user.service"
+import { CoursesService } from "src/app/services/courses/courses.service"
+import { UserService } from "src/app/services/user/user.service"
 import { UserEditComponent } from "./user-edit.component"
 
 describe('UserEditComponent', () => {

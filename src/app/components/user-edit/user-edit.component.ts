@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CoursesService } from 'src/app/services/courses.service';
-import { UserService } from 'src/app/services/user-service/user.service';
+import { CoursesService } from 'src/app/services/courses/courses.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from '../../_alert/alert.service'
 

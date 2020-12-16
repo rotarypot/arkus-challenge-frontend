@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user-service/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalService } from 'src/app/_modal';
 

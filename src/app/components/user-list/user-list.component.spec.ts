@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms"
 import { By } from "@angular/platform-browser"
 import { RouterTestingModule } from "@angular/router/testing"
 import { Observable, of } from "rxjs"
-import { UserService } from "src/app/services/user-service/user.service"
+import { UserService } from "src/app/services/user/user.service"
 import { ModalModule, ModalService } from "src/app/_modal"
 import { UserListComponent } from "./user-list.component"
 

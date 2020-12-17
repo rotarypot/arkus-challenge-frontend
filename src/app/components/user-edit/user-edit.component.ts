@@ -27,11 +27,6 @@ export class UserEditComponent implements OnInit {
 
   })
 
-  options = {
-    autoClose: true
-  }
-
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _coursesService: CoursesService,
@@ -56,13 +51,27 @@ export class UserEditComponent implements OnInit {
       this.trainingtypes = trainingtypes;
     })
 
-    this.getUpdatedData();  // usando pipe async en el template nos hace un observable de esto auto-magicamente weeee...
+    this.getTrainingData();
+
 
   }
 
-  getUpdatedData() {
-    this.training_data$ = this._userService.getUserById(this.user_id);
-    // notese que NO nos suscribimos al servicio 
+  getTrainingData() {
+    this.training_data$ = this._userService.getUserById(this.user_id)
+    // notese que NO nos suscribimos al servicio, 
+    // usamos el pipe async en el template, para suscribirnos al observable que regresará.
+  }
+
+
+  deleteTraining(id) {
+
+    let confirm = prompt('Do you want to delete this training? \r\nType YES to delete');
+    if (confirm == "YES") {
+      this._userService.deleteTraining(id).subscribe(res => {
+        this.alertService.success('Training has been deleted', { autoClose: true, id: 'alert-2' });
+      },
+        err => { alert(err) })
+    }
   }
 
   submitTime() {
@@ -71,19 +80,18 @@ export class UserEditComponent implements OnInit {
       const data = this.timeForm.value;
       data.user_id = this.user_id;
       this._userService.updateTraining(data).subscribe(res => {
-        this.alertService.success('Training update successful!', this.options);
-        this.getUpdatedData();
+        this.alertService.success('Training update successful!', { autoClose: true, id: 'alert-1' });
         this.timeForm.reset();
 
       },
         error => {
-          this.alertService.error('Update failed', this.options);
+          this.alertService.error('Update failed', { autoClose: true, id: 'alert-1' });
           this.timeForm.reset();
 
         })
 
     } else {
-      this.alertService.error('All fields are REQUIRED', this.options)
+      this.alertService.error('All fields are REQUIRED', { autoClose: true, id: 'alert-1' })
     }
   }
 }

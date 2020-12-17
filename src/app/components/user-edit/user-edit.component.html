@@ -53,7 +53,7 @@
                 <div class="col-sm">
                     <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">
                         Save this data</button>
-                    <alert></alert>
+                    <alert id="alert-1"></alert>
                 </div>
             </div>
         </div>
@@ -62,18 +62,18 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <h4>Training Taken</h4>
+                <h4 style="display: inline-block">Training Taken</h4>
+                <alert id="alert-2"></alert>
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-sm">
                 <!--  -->
-                <button [className]="'btn training ' + t.training_type.trainingTypeName"
+                <button (click)="deleteTraining(t._id)" [className]="'btn training ' + t.training_type.trainingTypeName"
                     *ngFor="let t of training_data.TrainingTimes">
                     {{t.course.courseName}}
-                    <span class="badge bg-warning">3h</span>
-
+                    <span class="badge bg-warning">{{t.timespent}}h</span>
                 </button>
             </div>
         </div>

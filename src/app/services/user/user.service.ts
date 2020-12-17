@@ -23,6 +23,11 @@ export class UserService {
   updateTraining(data) {
     return this.http.post(environment.API_URL + 'users/update', data)
   }
+
+  deleteTraining(_id) {
+    return this.http.delete(environment.API_URL + 'users/training/' + _id)
+  }
+
   getPublicData(): Observable<any> {
     return this.http.get(environment.API_URL + 'publicdata');
   }

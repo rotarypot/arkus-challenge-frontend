@@ -1,54 +1,82 @@
-<div class="container-lg">
-    <div class="row">
-        <div class="col-sm">
-            <h4>Training Time Capture</h4>
-            <hr>
-            <h3 style="display: inline-block; margin-right: 6px"><span class="badge bg-secondary"
-                    *ngIf="user_data | async as user_data">{{user_data.username | titlecase}}</span>
-            </h3>
-            <span><a [routerLink]="['/']">
-                    << Back to users list</a></span>
+<div *ngIf="training_data$ | async as training_data">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-sm">
+                <h4>Training Time Capture</h4>
+                <hr>
+                <h3 style="display: inline-block; margin-right: 6px">
+                    <span class="badge bg-secondary">
+
+                        {{training_data.username}}
+
+
+                    </span>
+                </h3>
+                <span><a [routerLink]="['/']">
+                        << Back to users list</a></span>
+            </div>
         </div>
     </div>
-</div>
-<form [formGroup]="timeForm">
+    <form [formGroup]="timeForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Select a course</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" formControlName="course_id">
+                            <option selected>Select a course</option>
+                            <option *ngFor="let course of courses" [value]="course._id">{{course.courseName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect02">Select training type</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect02" formControlName="trainingtype_id">
+                            <option selected>Select a course type</option>
+                            <option *ngFor="let trainingtype of trainingtypes" [value]="trainingtype._id">
+                                {{trainingtype.trainingTypeName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect03">Time spent in training</label>
+                        </div>
+                        <input type="number" id="inputGroupSelect03" class="form-control" placeholder="In hours"
+                            formControlName="timespent" name="timespent">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">
+                        Save this data</button>
+                    <alert></alert>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01">Select a course</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect01" formControlName="course_id">
-                        <option selected>Select a course</option>
-                        <option *ngFor="let course of courses" [value]="course._id">{{course.courseName}}</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect02">Select training type</label>
-                    </div>
-                    <select class="custom-select" id="inputGroupSelect02" formControlName="trainingtype_id">
-                        <option selected>Select a course type</option>
-                        <option *ngFor="let trainingtype of trainingtypes" [value]="trainingtype._id">
-                            {{trainingtype.trainingTypeName}}</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect03">Time spent in training</label>
-                    </div>
-                    <input type="number" id="inputGroupSelect03" class="form-control" placeholder="In hours"
-                        formControlName="timespent" name="timespent">
-                </div>
+                <h4>Training Taken</h4>
+                <hr>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm">
-                <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">
-                    Save this data</button>
-                <alert></alert>
+                <!--  -->
+                <button [className]="'btn training ' + t.training_type.trainingTypeName"
+                    *ngFor="let t of training_data.TrainingTimes">
+                    {{t.course.courseName}}
+                    <span class="badge bg-warning">3h</span>
+
+                </button>
             </div>
         </div>
     </div>
-</form>
+
+</div>

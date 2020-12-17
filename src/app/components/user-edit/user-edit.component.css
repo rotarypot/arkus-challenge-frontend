@@ -1,3 +1,27 @@
 span.bg-secondary {
     color: white;
 }
+
+.Video {
+    background-color: green;
+    color: white
+}
+
+.Lecture {
+    background-color: aqua;
+    color: black;
+}
+
+.Workshop {
+    background-color: cadetblue;
+    color: black
+}
+
+.Exercise {
+    background-color: darkgoldenrod;
+
+}
+
+.training {
+    margin: 0 8px 6px 0
+}

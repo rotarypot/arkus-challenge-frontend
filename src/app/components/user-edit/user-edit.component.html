@@ -1,3 +1,4 @@
+<ff-alerts></ff-alerts>
 <div *ngIf="training_data$ | async as training_data">
     <div class="container-lg">
         <div class="row">
@@ -53,7 +54,6 @@
                 <div class="col-sm">
                     <button type="button" style="margin-bottom: 10px" class="btn btn-primary" (click)="submitTime()">
                         Save this data</button>
-                    <alert id="alert-1"></alert>
                 </div>
             </div>
         </div>
@@ -63,7 +63,6 @@
         <div class="row">
             <div class="col-sm">
                 <h4 style="display: inline-block">Training Taken</h4>
-                <alert id="alert-2"></alert>
                 <hr>
             </div>
         </div>

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from 'src/app/services/courses/courses.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AlertService } from '../../_alert/alert.service';
 import { Observable } from "rxjs";
+import { AlertService } from '@full-fledged/alerts';
 
 declare var $: any;
 
@@ -31,7 +31,7 @@ export class UserEditComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _coursesService: CoursesService,
     private _userService: UserService,
-    public alertService: AlertService,
+    private _alertService: AlertService
 
   ) {
 
@@ -59,7 +59,7 @@ export class UserEditComponent implements OnInit {
   getTrainingData() {
     this.training_data$ = this._userService.getUserById(this.user_id)
     // notese que NO nos suscribimos al servicio, 
-    // usamos el pipe async en el template, para suscribirnos al observable que regresará.
+    // usamos el pipe async en el template, para suscribirnos al observable que regresará de la llamada al servicio.
   }
 
 
@@ -68,9 +68,12 @@ export class UserEditComponent implements OnInit {
     let confirm = prompt('Do you want to delete this training? \r\nType YES to delete');
     if (confirm == "YES") {
       this._userService.deleteTraining(id).subscribe(res => {
-        this.alertService.success('Training has been deleted', { autoClose: true, id: 'alert-2' });
+        this._alertService.success('Training was DELETED')
+        this.getTrainingData();
       },
-        err => { alert(err) })
+        err => {
+          this._alertService.danger('Delete FAILED, check logs')
+        })
     }
   }
 
@@ -80,18 +83,20 @@ export class UserEditComponent implements OnInit {
       const data = this.timeForm.value;
       data.user_id = this.user_id;
       this._userService.updateTraining(data).subscribe(res => {
-        this.alertService.success('Training update successful!', { autoClose: true, id: 'alert-1' });
         this.timeForm.reset();
+        this._alertService.info('Training UPDATED');
+        this.getTrainingData();
 
       },
         error => {
-          this.alertService.error('Update failed', { autoClose: true, id: 'alert-1' });
           this.timeForm.reset();
+          this._alertService.danger('Update FAILED, check logs')
 
         })
 
     } else {
-      this.alertService.error('All fields are REQUIRED', { autoClose: true, id: 'alert-1' })
+      this._alertService.warning('All fields are required')
+
     }
   }
 }

@@ -12,8 +12,9 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from './services/courses/courses.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlertModule } from './_alert';
 import { ModalModule } from './_modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertModule } from '@full-fledged/alerts';
 
 
 @NgModule({
@@ -29,8 +30,9 @@ import { ModalModule } from './_modal';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
-    AlertModule,
-    ModalModule
+    BrowserAnimationsModule,
+    ModalModule,
+    AlertModule.forRoot({ maxMessages: 1, timeout: 2500, positionX: "right", positionY: "top" })
   ],
   providers: [UserService, CoursesService],
   bootstrap: [AppComponent]

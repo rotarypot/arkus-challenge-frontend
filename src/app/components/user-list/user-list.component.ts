@@ -23,6 +23,7 @@ export class UserListComponent implements OnInit {
   public badCredentials: boolean = false;
   private userId;
   public showLogin: boolean = false;
+  public searchText = "";
 
   public loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),

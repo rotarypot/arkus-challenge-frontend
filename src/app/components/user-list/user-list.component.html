@@ -17,6 +17,12 @@
 <div class="container-lg">
     <div class="row">
         <div class="col-sm">
+            <div class="mb-3">
+                <label for="search-box" class="form-label">You can filter users</label>
+                <input type="text" class="form-control" id="search-text" placeholder="Type here.." name="search-box"
+                    [(ngModel)]="searchText" autofocus>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -26,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of publicdata">
+                    <tr *ngFor="let user of publicdata | appFilter: searchText">
                         <td>
                             <a class="edituserlink" [routerLink]="['/user-edit', user._id]" (click)="saveId(user._id)">
                                 {{ user.username }}</a>

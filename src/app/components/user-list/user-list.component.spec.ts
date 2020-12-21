@@ -1,10 +1,11 @@
 import { Location } from "@angular/common"
 import { Component } from "@angular/core"
 import { ComponentFixture, TestBed } from "@angular/core/testing"
-import { ReactiveFormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { By } from "@angular/platform-browser"
 import { RouterTestingModule } from "@angular/router/testing"
 import { Observable, of } from "rxjs"
+import { FilterPipe } from "src/app/filters/filter.pipe"
 import { UserService } from "src/app/services/user/user.service"
 import { ModalModule, ModalService } from "src/app/_modal"
 import { UserListComponent } from "./user-list.component"
@@ -14,9 +15,10 @@ describe('UserListComponent', () => {
   let fixture: ComponentFixture<UserListComponent>
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [UserListComponent],
+      declarations: [UserListComponent, FilterPipe],
       imports: [
         ReactiveFormsModule,
+        FormsModule,
         ModalModule,
         RouterTestingModule.withRoutes([
           { path: '', component: FakeComponent }

@@ -1,7 +1,8 @@
 import { Component } from "@angular/core"
 import { ComponentFixture, TestBed } from "@angular/core/testing"
-import { ReactiveFormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { RouterTestingModule } from "@angular/router/testing"
+import { AlertService } from "@full-fledged/alerts"
 import { Observable, of } from "rxjs"
 import { CoursesService } from "src/app/services/courses/courses.service"
 import { UserService } from "src/app/services/user/user.service"
@@ -15,11 +16,14 @@ describe('UserEditComponent', () => {
       declarations: [UserEditComponent],
       imports: [
         ReactiveFormsModule,
+        FormsModule,
         RouterTestingModule
       ],
       providers: [
         { provide: UserService, useClass: fakeUserService },
-        { provide: CoursesService, useClass: fakeCoursesService }
+        { provide: CoursesService, useClass: fakeCoursesService },
+        { provide: AlertService, useClass: fakeAlertService }
+
       ]
     }).compileComponents();
   })
@@ -96,4 +100,9 @@ class fakeUserService {
   getUserById(): Observable<any> {
     return of([])
   }
+}
+
+
+class fakeAlertService {
+
 }

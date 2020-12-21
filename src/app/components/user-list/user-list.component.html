@@ -39,7 +39,7 @@
                         <td>
                             <span [className]="'badge rounded-pill myBadge ' + t.training_type.trainingTypeName"
                                 *ngFor="let t of user.TrainingTimes">
-                                {{t.course.courseName}} - {{t.timespent}}h
+                                {{t.training_type.trainingTypeName}} | {{t.course.courseName}} - {{t.timespent}}h
                             </span>
                         </td>
                     </tr>

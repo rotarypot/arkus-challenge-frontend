@@ -19,7 +19,13 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/arkus-frontend'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 60,
+        lines: 60,
+        branches: 60,
+        functions: 60
+      }
     },
     reporters: ['mocha', 'kjhtml'],
     port: 9876,
